@@ -8,6 +8,11 @@ HEADERS = {
 
 
 def get_all_users():
+    """
+          Documentation: Takes a value such as a string to search against a regular expression.
+          To search for a specific regex value input into exp_value, set "escape_regex_chars" to False:
+          escape_regex_chars=False.
+    """
     relative_url = "api/users"
     url = BASE_URL + relative_url
     response = requests.request("GET", url, headers=HEADERS)
@@ -17,6 +22,11 @@ def get_all_users():
 
 
 def get_single_user(user_id):
+    """
+          Documentation: Takes a value such as a string to search against a regular expression.
+          To search for a specific regex value input into exp_value, set "escape_regex_chars" to False:
+          escape_regex_chars=False.
+    """
     relative_url = "api/users/" + str(user_id)
     url = BASE_URL + relative_url
     response = requests.request("GET", url, headers=HEADERS)
@@ -25,6 +35,11 @@ def get_single_user(user_id):
 
 
 def single_user_not_found(user_id):
+    """
+          Documentation: Takes a value such as a string to search against a regular expression.
+          To search for a specific regex value input into exp_value, set "escape_regex_chars" to False:
+          escape_regex_chars=False.
+    """
     relative_url = "api/users/" + str(user_id)
     url = BASE_URL + relative_url
     response = requests.request("GET", url, headers=HEADERS)
@@ -33,6 +48,11 @@ def single_user_not_found(user_id):
 
 
 def create_user(Name, Job):
+    """
+          Documentation: Takes a value such as a string to search against a regular expression.
+          To search for a specific regex value input into exp_value, set "escape_regex_chars" to False:
+          escape_regex_chars=False.
+    """
     relative_url = "api/users"
     url = BASE_URL + relative_url
     data = {'name': Name, 'job': Job}
@@ -44,6 +64,11 @@ def create_user(Name, Job):
 
 
 def update_user(ID, Name, Job):
+    """
+          Documentation: Takes a value such as a string to search against a regular expression.
+          To search for a specific regex value input into exp_value, set "escape_regex_chars" to False:
+          escape_regex_chars=False.
+    """
     relative_url = "api/users/"
     url = BASE_URL + relative_url + str(ID)
     data = {'name': Name, 'job': Job}
@@ -54,6 +79,11 @@ def update_user(ID, Name, Job):
 
 
 def delete_user(Id):
+    """
+          Documentation: Takes a value such as a string to search against a regular expression.
+          To search for a specific regex value input into exp_value, set "escape_regex_chars" to False:
+          escape_regex_chars=False.
+    """
     relative_url = "api/users/"
     url = BASE_URL + relative_url + str(Id)
     response = requests.request("DELETE", url, headers=HEADERS)
@@ -61,6 +91,11 @@ def delete_user(Id):
 
 
 def successful_registration(Email, Passsword):
+    """
+          Documentation: Takes a value such as a string to search against a regular expression.
+          To search for a specific regex value input into exp_value, set "escape_regex_chars" to False:
+          escape_regex_chars=False.
+    """
     relative_url = "api/register"
     url = BASE_URL + relative_url
     data = {'email': Email, 'password': Passsword}
@@ -69,6 +104,11 @@ def successful_registration(Email, Passsword):
 
 
 def unsuccessful_registration(Email, Passsword):
+    """
+          Documentation: Takes a value such as a string to search against a regular expression.
+          To search for a specific regex value input into exp_value, set "escape_regex_chars" to False:
+          escape_regex_chars=False.
+    """
     relative_url = "api/register"
     url = BASE_URL + relative_url
     data = {'email': Email, 'password': Passsword}
@@ -77,6 +117,11 @@ def unsuccessful_registration(Email, Passsword):
 
 
 def successful_login(Email, Passsword):
+    """
+          Documentation: Takes a value such as a string to search against a regular expression.
+          To search for a specific regex value input into exp_value, set "escape_regex_chars" to False:
+          escape_regex_chars=False.
+    """
     relative_url = "api/login"
     url = BASE_URL + relative_url
     data = {'email': Email, 'password': Passsword}
@@ -85,6 +130,11 @@ def successful_login(Email, Passsword):
 
 
 def unsuccessful_login(Email, Passsword):
+    """
+          Documentation: Takes a value such as a string to search against a regular expression.
+          To search for a specific regex value input into exp_value, set "escape_regex_chars" to False:
+          escape_regex_chars=False.
+    """
     relative_url = "api/login"
     url = BASE_URL + relative_url
     data = {'email': Email, 'password': Passsword}
@@ -93,6 +143,11 @@ def unsuccessful_login(Email, Passsword):
 
 
 def delayed_response():
+    """
+          Documentation: Takes a value such as a string to search against a regular expression.
+          To search for a specific regex value input into exp_value, set "escape_regex_chars" to False:
+          escape_regex_chars=False.
+    """
     url = BASE_URL + "api/users?delay=3"
     response = requests.get(url, headers=HEADERS)
     number_of_users = response.json()['total']
