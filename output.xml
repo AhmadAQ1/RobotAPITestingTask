@@ -1,0 +1,561 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.2.1 (Python 3.7.3 on win32)" generated="20200706 19:38:00.907" rpa="false">
+<suite id="s1" name="Tests" source="C:\Users\DELL\PycharmProjects\Testing\Tests.robot">
+<test id="s1-t1" name="Get All Users">
+<kw name="Get All Users Test" library="Keywords">
+<kw name="Get All Users" library="APITests">
+<assign>
+<var>${response_code}</var>
+<var>${users_total}</var>
+</assign>
+<msg timestamp="20200706 19:38:01.183" level="INFO">${response_code} = 200</msg>
+<msg timestamp="20200706 19:38:01.183" level="INFO">${users_total} = 12</msg>
+<status status="PASS" starttime="20200706 19:38:01.080" endtime="20200706 19:38:01.183"></status>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${response_code}</arg>
+<arg>${STATUS_CODE_OK}</arg>
+</arguments>
+<msg timestamp="20200706 19:38:01.184" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" starttime="20200706 19:38:01.183" endtime="20200706 19:38:01.184"></status>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${users_total}</arg>
+<arg>${TOTAL_NUMBER_OF_USERS}</arg>
+</arguments>
+<msg timestamp="20200706 19:38:01.184" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" starttime="20200706 19:38:01.184" endtime="20200706 19:38:01.184"></status>
+</kw>
+<status status="PASS" starttime="20200706 19:38:01.080" endtime="20200706 19:38:01.184"></status>
+</kw>
+<status status="PASS" starttime="20200706 19:38:01.080" endtime="20200706 19:38:01.185" critical="yes"></status>
+</test>
+<test id="s1-t2" name="Get A Specific User">
+<kw name="Get A Specific User Test" library="Keywords">
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<arguments>
+<arg>random.randint(1, 12)</arg>
+<arg>modules=random</arg>
+</arguments>
+<assign>
+<var>${id}</var>
+</assign>
+<msg timestamp="20200706 19:38:01.187" level="INFO">${id} = 9</msg>
+<status status="PASS" starttime="20200706 19:38:01.187" endtime="20200706 19:38:01.187"></status>
+</kw>
+<kw name="Get Single User" library="APITests">
+<arguments>
+<arg>${id}</arg>
+</arguments>
+<assign>
+<var>${recived_response}</var>
+<var>${sent_id}</var>
+</assign>
+<msg timestamp="20200706 19:38:01.284" level="INFO">${recived_response} = 200</msg>
+<msg timestamp="20200706 19:38:01.284" level="INFO">${sent_id} = 9</msg>
+<status status="PASS" starttime="20200706 19:38:01.188" endtime="20200706 19:38:01.284"></status>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${recived_response}</arg>
+<arg>${STATUS_CODE_OK}</arg>
+</arguments>
+<msg timestamp="20200706 19:38:01.285" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" starttime="20200706 19:38:01.284" endtime="20200706 19:38:01.285"></status>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${id}</arg>
+<arg>${sent_id}</arg>
+</arguments>
+<status status="PASS" starttime="20200706 19:38:01.285" endtime="20200706 19:38:01.286"></status>
+</kw>
+<status status="PASS" starttime="20200706 19:38:01.187" endtime="20200706 19:38:01.286"></status>
+</kw>
+<status status="PASS" starttime="20200706 19:38:01.186" endtime="20200706 19:38:01.287" critical="yes"></status>
+</test>
+<test id="s1-t3" name="Specific User Not Found">
+<kw name="single user not found Test" library="Keywords">
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<arguments>
+<arg>random.randint(13, 100)</arg>
+<arg>modules=random</arg>
+</arguments>
+<assign>
+<var>${id}</var>
+</assign>
+<msg timestamp="20200706 19:38:01.290" level="INFO">${id} = 38</msg>
+<status status="PASS" starttime="20200706 19:38:01.289" endtime="20200706 19:38:01.290"></status>
+</kw>
+<kw name="Single User Not Found" library="APITests">
+<arguments>
+<arg>${id}</arg>
+</arguments>
+<assign>
+<var>${recived_response}</var>
+</assign>
+<msg timestamp="20200706 19:38:01.737" level="INFO">404</msg>
+<msg timestamp="20200706 19:38:01.738" level="INFO">${recived_response} = 404</msg>
+<status status="PASS" starttime="20200706 19:38:01.290" endtime="20200706 19:38:01.738"></status>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${recived_response}</arg>
+<arg>${STATUS_CODE_NOT_FOUND}</arg>
+</arguments>
+<msg timestamp="20200706 19:38:01.738" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" starttime="20200706 19:38:01.738" endtime="20200706 19:38:01.738"></status>
+</kw>
+<status status="PASS" starttime="20200706 19:38:01.288" endtime="20200706 19:38:01.738"></status>
+</kw>
+<status status="PASS" starttime="20200706 19:38:01.288" endtime="20200706 19:38:01.739" critical="yes"></status>
+</test>
+<test id="s1-t4" name="Create A User">
+<kw name="Create a New User and Verify it was created" library="Keywords">
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>ahmad</arg>
+</arguments>
+<assign>
+<var>${created_name}</var>
+</assign>
+<msg timestamp="20200706 19:38:01.741" level="INFO">${created_name} = ahmad</msg>
+<status status="PASS" starttime="20200706 19:38:01.741" endtime="20200706 19:38:01.741"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>Actor</arg>
+</arguments>
+<assign>
+<var>${created_job}</var>
+</assign>
+<msg timestamp="20200706 19:38:01.742" level="INFO">${created_job} = Actor</msg>
+<status status="PASS" starttime="20200706 19:38:01.741" endtime="20200706 19:38:01.742"></status>
+</kw>
+<kw name="Create User" library="APITests">
+<arguments>
+<arg>${created_name}</arg>
+<arg>${created_job}</arg>
+</arguments>
+<assign>
+<var>${new_user_name}</var>
+<var>${new_user_job}</var>
+<var>${response_status}</var>
+</assign>
+<msg timestamp="20200706 19:38:02.012" level="INFO">${new_user_name} = ahmad</msg>
+<msg timestamp="20200706 19:38:02.012" level="INFO">${new_user_job} = Actor</msg>
+<msg timestamp="20200706 19:38:02.012" level="INFO">${response_status} = 201</msg>
+<status status="PASS" starttime="20200706 19:38:01.742" endtime="20200706 19:38:02.012"></status>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${response_status}</arg>
+<arg>${STATUS_CODE_CREATED}</arg>
+</arguments>
+<msg timestamp="20200706 19:38:02.013" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" starttime="20200706 19:38:02.012" endtime="20200706 19:38:02.013"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${created_name}</arg>
+<arg>${new_user_name}</arg>
+</arguments>
+<status status="PASS" starttime="20200706 19:38:02.013" endtime="20200706 19:38:02.014"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${created_job}</arg>
+<arg>${new_user_job}</arg>
+</arguments>
+<status status="PASS" starttime="20200706 19:38:02.014" endtime="20200706 19:38:02.014"></status>
+</kw>
+<status status="PASS" starttime="20200706 19:38:01.741" endtime="20200706 19:38:02.015"></status>
+</kw>
+<status status="PASS" starttime="20200706 19:38:01.740" endtime="20200706 19:38:02.015" critical="yes"></status>
+</test>
+<test id="s1-t5" name="Update A User">
+<kw name="Update User and Verify it has been updated" library="Keywords">
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<arguments>
+<arg>random.randint(1, 12)</arg>
+<arg>modules=random</arg>
+</arguments>
+<assign>
+<var>${user_ID}</var>
+</assign>
+<msg timestamp="20200706 19:38:02.018" level="INFO">${user_ID} = 5</msg>
+<status status="PASS" starttime="20200706 19:38:02.018" endtime="20200706 19:38:02.018"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>ahmad</arg>
+</arguments>
+<assign>
+<var>${new_name}</var>
+</assign>
+<msg timestamp="20200706 19:38:02.019" level="INFO">${new_name} = ahmad</msg>
+<status status="PASS" starttime="20200706 19:38:02.018" endtime="20200706 19:38:02.019"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>Actor</arg>
+</arguments>
+<assign>
+<var>${new_job}</var>
+</assign>
+<msg timestamp="20200706 19:38:02.019" level="INFO">${new_job} = Actor</msg>
+<status status="PASS" starttime="20200706 19:38:02.019" endtime="20200706 19:38:02.019"></status>
+</kw>
+<kw name="Update User" library="APITests">
+<arguments>
+<arg>${user_ID}</arg>
+<arg>${new_name}</arg>
+<arg>${new_job}</arg>
+</arguments>
+<assign>
+<var>${updated_user_name}</var>
+<var>${updated_user_job}</var>
+</assign>
+<msg timestamp="20200706 19:38:02.345" level="INFO">${updated_user_name} = ahmad</msg>
+<msg timestamp="20200706 19:38:02.345" level="INFO">${updated_user_job} = Actor</msg>
+<status status="PASS" starttime="20200706 19:38:02.019" endtime="20200706 19:38:02.345"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${new_name}</arg>
+<arg>${updated_user_name}</arg>
+</arguments>
+<status status="PASS" starttime="20200706 19:38:02.345" endtime="20200706 19:38:02.345"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${new_job}</arg>
+<arg>${updated_user_job}</arg>
+</arguments>
+<status status="PASS" starttime="20200706 19:38:02.345" endtime="20200706 19:38:02.345"></status>
+</kw>
+<status status="PASS" starttime="20200706 19:38:02.017" endtime="20200706 19:38:02.346"></status>
+</kw>
+<status status="PASS" starttime="20200706 19:38:02.016" endtime="20200706 19:38:02.346" critical="yes"></status>
+</test>
+<test id="s1-t6" name="Delete A User">
+<kw name="Delete User and Verify it Has been Deleted" library="Keywords">
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<arguments>
+<arg>random.randint(1, 12)</arg>
+<arg>modules=random</arg>
+</arguments>
+<assign>
+<var>${User_ID}</var>
+</assign>
+<msg timestamp="20200706 19:38:02.349" level="INFO">${User_ID} = 1</msg>
+<status status="PASS" starttime="20200706 19:38:02.348" endtime="20200706 19:38:02.349"></status>
+</kw>
+<kw name="Delete User" library="APITests">
+<arguments>
+<arg>${User_ID}</arg>
+</arguments>
+<assign>
+<var>${received_response}</var>
+</assign>
+<msg timestamp="20200706 19:38:02.609" level="INFO">${received_response} = 204</msg>
+<status status="PASS" starttime="20200706 19:38:02.349" endtime="20200706 19:38:02.610"></status>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${received_response}</arg>
+<arg>${STATUS_CODE_NO_CONTENT}</arg>
+</arguments>
+<msg timestamp="20200706 19:38:02.610" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" starttime="20200706 19:38:02.610" endtime="20200706 19:38:02.610"></status>
+</kw>
+<status status="PASS" starttime="20200706 19:38:02.348" endtime="20200706 19:38:02.610"></status>
+</kw>
+<status status="PASS" starttime="20200706 19:38:02.348" endtime="20200706 19:38:02.611" critical="yes"></status>
+</test>
+<test id="s1-t7" name="Successfull Registration">
+<kw name="Successfull Registration Test" library="Keywords">
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>eve.holt@reqres.in</arg>
+</arguments>
+<assign>
+<var>${user_email}</var>
+</assign>
+<msg timestamp="20200706 19:38:02.614" level="INFO">${user_email} = eve.holt@reqres.in</msg>
+<status status="PASS" starttime="20200706 19:38:02.613" endtime="20200706 19:38:02.614"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>qwerty</arg>
+</arguments>
+<assign>
+<var>${password}</var>
+</assign>
+<msg timestamp="20200706 19:38:02.614" level="INFO">${password} = qwerty</msg>
+<status status="PASS" starttime="20200706 19:38:02.614" endtime="20200706 19:38:02.614"></status>
+</kw>
+<kw name="Successful Registration" library="APITests">
+<arguments>
+<arg>${user_email}</arg>
+<arg>${password}</arg>
+</arguments>
+<assign>
+<var>${verify_successful_registration}</var>
+</assign>
+<msg timestamp="20200706 19:38:02.878" level="INFO">${verify_successful_registration} = 200</msg>
+<status status="PASS" starttime="20200706 19:38:02.614" endtime="20200706 19:38:02.878"></status>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${verify_successful_registration}</arg>
+<arg>${STATUS_CODE_OK}</arg>
+</arguments>
+<msg timestamp="20200706 19:38:02.879" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" starttime="20200706 19:38:02.879" endtime="20200706 19:38:02.879"></status>
+</kw>
+<status status="PASS" starttime="20200706 19:38:02.613" endtime="20200706 19:38:02.879"></status>
+</kw>
+<status status="PASS" starttime="20200706 19:38:02.612" endtime="20200706 19:38:02.880" critical="yes"></status>
+</test>
+<test id="s1-t8" name="UnSucessfull Registration">
+<kw name="UnSuccessfull Registration Test" library="Keywords">
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>ahmad@reqers.in</arg>
+</arguments>
+<assign>
+<var>${user_email}</var>
+</assign>
+<msg timestamp="20200706 19:38:02.882" level="INFO">${user_email} = ahmad@reqers.in</msg>
+<status status="PASS" starttime="20200706 19:38:02.882" endtime="20200706 19:38:02.882"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>qwerty</arg>
+</arguments>
+<assign>
+<var>${password}</var>
+</assign>
+<msg timestamp="20200706 19:38:02.883" level="INFO">${password} = qwerty</msg>
+<status status="PASS" starttime="20200706 19:38:02.882" endtime="20200706 19:38:02.883"></status>
+</kw>
+<kw name="Unsuccessful Registration" library="APITests">
+<arguments>
+<arg>${user_email}</arg>
+<arg>${password}</arg>
+</arguments>
+<assign>
+<var>${verify_unSuccessful_registration}</var>
+</assign>
+<msg timestamp="20200706 19:38:03.145" level="INFO">${verify_unSuccessful_registration} = 400</msg>
+<status status="PASS" starttime="20200706 19:38:02.883" endtime="20200706 19:38:03.145"></status>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${verify_unSuccessful_registration}</arg>
+<arg>${STATUS_CODE_BAD_REQUEST}</arg>
+</arguments>
+<msg timestamp="20200706 19:38:03.145" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" starttime="20200706 19:38:03.145" endtime="20200706 19:38:03.145"></status>
+</kw>
+<status status="PASS" starttime="20200706 19:38:02.881" endtime="20200706 19:38:03.145"></status>
+</kw>
+<status status="PASS" starttime="20200706 19:38:02.881" endtime="20200706 19:38:03.146" critical="yes"></status>
+</test>
+<test id="s1-t9" name="Sucessfull Login">
+<kw name="Successfull Login Test" library="Keywords">
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>eve.holt@reqres.in</arg>
+</arguments>
+<assign>
+<var>${user_email}</var>
+</assign>
+<msg timestamp="20200706 19:38:03.148" level="INFO">${user_email} = eve.holt@reqres.in</msg>
+<status status="PASS" starttime="20200706 19:38:03.148" endtime="20200706 19:38:03.148"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>qwerty</arg>
+</arguments>
+<assign>
+<var>${password}</var>
+</assign>
+<msg timestamp="20200706 19:38:03.148" level="INFO">${password} = qwerty</msg>
+<status status="PASS" starttime="20200706 19:38:03.148" endtime="20200706 19:38:03.148"></status>
+</kw>
+<kw name="Successful Login" library="APITests">
+<arguments>
+<arg>${user_Email}</arg>
+<arg>${password}</arg>
+</arguments>
+<assign>
+<var>${verify_Successful_Login}</var>
+</assign>
+<msg timestamp="20200706 19:38:03.404" level="INFO">${verify_Successful_Login} = 200</msg>
+<status status="PASS" starttime="20200706 19:38:03.148" endtime="20200706 19:38:03.404"></status>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${verify_successful_login}</arg>
+<arg>${STATUS_CODE_OK}</arg>
+</arguments>
+<msg timestamp="20200706 19:38:03.405" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" starttime="20200706 19:38:03.404" endtime="20200706 19:38:03.405"></status>
+</kw>
+<status status="PASS" starttime="20200706 19:38:03.148" endtime="20200706 19:38:03.405"></status>
+</kw>
+<status status="PASS" starttime="20200706 19:38:03.147" endtime="20200706 19:38:03.405" critical="yes"></status>
+</test>
+<test id="s1-t10" name="UnSucessfull Login">
+<kw name="UnSuccessfull login Test" library="Keywords">
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>ahmad@reqers.in</arg>
+</arguments>
+<assign>
+<var>${user_Email}</var>
+</assign>
+<msg timestamp="20200706 19:38:03.408" level="INFO">${user_Email} = ahmad@reqers.in</msg>
+<status status="PASS" starttime="20200706 19:38:03.408" endtime="20200706 19:38:03.408"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>qwerty</arg>
+</arguments>
+<assign>
+<var>${password}</var>
+</assign>
+<msg timestamp="20200706 19:38:03.408" level="INFO">${password} = qwerty</msg>
+<status status="PASS" starttime="20200706 19:38:03.408" endtime="20200706 19:38:03.408"></status>
+</kw>
+<kw name="Unsuccessful Login" library="APITests">
+<arguments>
+<arg>${user_Email}</arg>
+<arg>${password}</arg>
+</arguments>
+<assign>
+<var>${verify_unSuccessful_Login}</var>
+</assign>
+<msg timestamp="20200706 19:38:03.661" level="INFO">${verify_unSuccessful_Login} = 400</msg>
+<status status="PASS" starttime="20200706 19:38:03.408" endtime="20200706 19:38:03.661"></status>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${verify_unSuccessful_login}</arg>
+<arg>${STATUS_CODE_BAD_REQUEST}</arg>
+</arguments>
+<msg timestamp="20200706 19:38:03.662" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" starttime="20200706 19:38:03.662" endtime="20200706 19:38:03.662"></status>
+</kw>
+<status status="PASS" starttime="20200706 19:38:03.407" endtime="20200706 19:38:03.662"></status>
+</kw>
+<status status="PASS" starttime="20200706 19:38:03.407" endtime="20200706 19:38:03.663" critical="yes"></status>
+</test>
+<test id="s1-t11" name="Delayed Response">
+<kw name="delayed response test" library="Keywords">
+<kw name="Delayed Response" library="APITests">
+<assign>
+<var>${recived_response}</var>
+<var>${users_total}</var>
+</assign>
+<msg timestamp="20200706 19:38:06.923" level="INFO">${recived_response} = 200</msg>
+<msg timestamp="20200706 19:38:06.923" level="INFO">${users_total} = 12</msg>
+<status status="PASS" starttime="20200706 19:38:03.665" endtime="20200706 19:38:06.923"></status>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${recived_response}</arg>
+<arg>${STATUS_CODE_OK}</arg>
+</arguments>
+<msg timestamp="20200706 19:38:06.924" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" starttime="20200706 19:38:06.923" endtime="20200706 19:38:06.924"></status>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${users_total}</arg>
+<arg>${TOTAL_NUMBER_OF_USERS}</arg>
+</arguments>
+<msg timestamp="20200706 19:38:06.924" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" starttime="20200706 19:38:06.924" endtime="20200706 19:38:06.924"></status>
+</kw>
+<status status="PASS" starttime="20200706 19:38:03.664" endtime="20200706 19:38:06.924"></status>
+</kw>
+<status status="PASS" starttime="20200706 19:38:03.664" endtime="20200706 19:38:06.925" critical="yes"></status>
+</test>
+<status status="PASS" starttime="20200706 19:38:00.909" endtime="20200706 19:38:06.927"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="11" fail="0">Critical Tests</stat>
+<stat pass="11" fail="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="11" fail="0" id="s1" name="Tests">Tests</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
