@@ -28,7 +28,7 @@ Get A Specific User Test
     should be equal as integers  ${recived_response}  ${STATUS_CODE_OK}
     should be equal as integers  ${id}  ${sent_id}
 
-single user not found Test
+Single User Not Found Test
     [Tags]    GET
     [Documentation]
     ...    Calls the API to return the response status code.
@@ -37,7 +37,7 @@ single user not found Test
     ${recived_response}  single user not found  ${id}
     should be equal as integers  ${recived_response}  ${STATUS_CODE_NOT_FOUND}
 
-Create a New User and Verify it was created
+Create A New User And Verify It Was Created
     [Tags]    POST
     [Documentation]
     ...    Calls the API to return the response status code (CREATED) name and job from the response body.
@@ -50,7 +50,7 @@ Create a New User and Verify it was created
     should be equal as strings  ${created_name}   ${new_user_name}
     should be equal as strings  ${created_job}   ${new_user_job}
 
-Update User and Verify it has been updated
+Update User And Verify It Has Been Updated
     [Tags]    PUT
     [Documentation]
     ...    Calls the API to return the response status code, updates name and job from the response body.
@@ -65,7 +65,7 @@ Update User and Verify it has been updated
     should be equal as strings  ${new_job}   ${updated_user_job}
 
 
-Delete User and Verify it Has been Deleted
+Delete User And Verify It Has been Deleted
     [Tags]    POST
     [Documentation]
     ...    Calls the API to return the response status code NO CONTENT.
@@ -117,7 +117,7 @@ UnSuccessfull login Test
     ${verify_unSuccessful_Login}  unsuccessful login  ${user_Email}  ${password}
     should be equal as integers  ${verify_unSuccessful_login}  ${STATUS_CODE_BAD_REQUEST}
 
-delayed response test
+Delayed Response Test
     [Tags]    GET
     [Documentation]
     ...    Calls the API to return the response status code (OK) and total number of users.

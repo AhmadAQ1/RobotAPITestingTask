@@ -6,13 +6,13 @@ Resource  Keywords.robot
 Get Data Tests
     Get All Users Test
     Get A Specific User Test
-    single user not found Test
-    delayed response test
+    Single User Not Found Test
+    Delayed Response Test
 
 Alter Data Tests
-    Create a New User and Verify it was created
-    Update User and Verify it has been updated
-    Delete User and Verify it Has been Deleted
+    Create A New User And Verify It Was Created
+    Update User And Verify It Has Been Updated
+    Delete User And Verify It Has been Deleted
 
 Authorization Tests
     Successfull Registration Test
