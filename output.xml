@@ -1,26 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 3.2.1 (Python 3.7.3 on win32)" generated="20200708 10:49:18.451" rpa="false">
+<robot generator="Robot 3.2.1 (Python 3.7.3 on win32)" generated="20200708 15:11:43.155" rpa="false">
 <suite id="s1" name="Tests" source="C:\Users\DELL\PycharmProjects\Testing\tests.robot">
-<test id="s1-t1" name="Get All Users">
+<test id="s1-t1" name="Get Data Tests">
 <kw name="Get All Users Test" library="Keywords">
 <tags>
-<tag>lpn</tag>
+<tag>GET</tag>
 </tags>
-<doc>Calls the API to return the siblings of the LPN passed in. Expected result
-is the API returns a code 500 error since the LPN is invalid with the message LPN X
-is not valid where X is the LPN passed up</doc>
+<doc>Calls the API to return the response status code and total number of users.
+Expected result is the API returns a code 200 success and 12 total users.</doc>
 <kw name="Get All Users" library="APITests">
-<doc>Documentation: This function uses the provided url to send API requests
-using python's requests library. It should return the json data
-that contains the specific data you are hoping to find. This function only returns the data with
+<doc>Documentation: This function uses the provided url to send an API request
+using python's requests library (GET method). It should return the json data that contains
+the specific data you are hoping to find. This function only returns the data with
 the given path you provide (in tuple format).</doc>
 <assign>
 <var>${response_code}</var>
 <var>${users_total}</var>
 </assign>
-<msg timestamp="20200708 10:49:19.125" level="INFO">${response_code} = 200</msg>
-<msg timestamp="20200708 10:49:19.125" level="INFO">${users_total} = 12</msg>
-<status status="PASS" starttime="20200708 10:49:19.031" endtime="20200708 10:49:19.125"></status>
+<msg timestamp="20200708 15:11:43.776" level="INFO">${response_code} = 200</msg>
+<msg timestamp="20200708 15:11:43.776" level="INFO">${users_total} = 12</msg>
+<status status="PASS" starttime="20200708 15:11:43.333" endtime="20200708 15:11:43.776"></status>
 </kw>
 <kw name="Should Be Equal As Integers" library="BuiltIn">
 <doc>Fails if objects are unequal after converting them to integers.</doc>
@@ -28,10 +27,10 @@ the given path you provide (in tuple format).</doc>
 <arg>${response_code}</arg>
 <arg>${STATUS_CODE_OK}</arg>
 </arguments>
-<msg timestamp="20200708 10:49:19.126" level="INFO">Argument types are:
+<msg timestamp="20200708 15:11:43.777" level="INFO">Argument types are:
 &lt;class 'int'&gt;
 &lt;type 'unicode'&gt;</msg>
-<status status="PASS" starttime="20200708 10:49:19.125" endtime="20200708 10:49:19.126"></status>
+<status status="PASS" starttime="20200708 15:11:43.776" endtime="20200708 15:11:43.777"></status>
 </kw>
 <kw name="Should Be Equal As Integers" library="BuiltIn">
 <doc>Fails if objects are unequal after converting them to integers.</doc>
@@ -39,24 +38,19 @@ the given path you provide (in tuple format).</doc>
 <arg>${users_total}</arg>
 <arg>${TOTAL_NUMBER_OF_USERS}</arg>
 </arguments>
-<msg timestamp="20200708 10:49:19.126" level="INFO">Argument types are:
+<msg timestamp="20200708 15:11:43.777" level="INFO">Argument types are:
 &lt;class 'int'&gt;
 &lt;type 'unicode'&gt;</msg>
-<status status="PASS" starttime="20200708 10:49:19.126" endtime="20200708 10:49:19.126"></status>
+<status status="PASS" starttime="20200708 15:11:43.777" endtime="20200708 15:11:43.777"></status>
 </kw>
-<status status="PASS" starttime="20200708 10:49:19.031" endtime="20200708 10:49:19.127"></status>
+<status status="PASS" starttime="20200708 15:11:43.333" endtime="20200708 15:11:43.777"></status>
 </kw>
-<status status="PASS" starttime="20200708 10:49:19.030" endtime="20200708 10:49:19.127" critical="yes"></status>
-</test>
-<test id="s1-t2" name="Get A Specific User">
 <kw name="Get A Specific User Test" library="Keywords">
 <tags>
-<tag>lpn</tag>
+<tag>GET</tag>
 </tags>
-<doc>Calls the API to return the siblings of the LPN passed in. Expected result
-is the API returns the six LPNs before and the six LPNs after the one that was passed up.
-It returns the case tied to each LPN, the po tied to the case, and the current location
-of the LPN. NOTE - These wouldnt necessarily be populated.</doc>
+<doc>Calls the API to return the response status code and reponse user id.
+Expected result is the API returns 200 status code success and the user id from the response.</doc>
 <kw name="Evaluate" library="BuiltIn">
 <doc>Evaluates the given expression in Python and returns the result.</doc>
 <arguments>
@@ -66,12 +60,12 @@ of the LPN. NOTE - These wouldnt necessarily be populated.</doc>
 <assign>
 <var>${id}</var>
 </assign>
-<msg timestamp="20200708 10:49:19.130" level="INFO">${id} = 8</msg>
-<status status="PASS" starttime="20200708 10:49:19.129" endtime="20200708 10:49:19.130"></status>
+<msg timestamp="20200708 15:11:43.777" level="INFO">${id} = 10</msg>
+<status status="PASS" starttime="20200708 15:11:43.777" endtime="20200708 15:11:43.777"></status>
 </kw>
 <kw name="Get Single User" library="APITests">
 <doc>Documentation: This function uses the provided user_id to send an API request
-using python's requests library. It should return the json data
+using python's requests library (GET method). It should return the json data
 that contains the specific data you are hoping to find. This function only returns the data with
 the given path you provide (in tuple format).</doc>
 <arguments>
@@ -81,9 +75,9 @@ the given path you provide (in tuple format).</doc>
 <var>${recived_response}</var>
 <var>${sent_id}</var>
 </assign>
-<msg timestamp="20200708 10:49:19.407" level="INFO">${recived_response} = 200</msg>
-<msg timestamp="20200708 10:49:19.407" level="INFO">${sent_id} = 8</msg>
-<status status="PASS" starttime="20200708 10:49:19.130" endtime="20200708 10:49:19.407"></status>
+<msg timestamp="20200708 15:11:44.068" level="INFO">${recived_response} = 200</msg>
+<msg timestamp="20200708 15:11:44.068" level="INFO">${sent_id} = 10</msg>
+<status status="PASS" starttime="20200708 15:11:43.777" endtime="20200708 15:11:44.068"></status>
 </kw>
 <kw name="Should Be Equal As Integers" library="BuiltIn">
 <doc>Fails if objects are unequal after converting them to integers.</doc>
@@ -91,10 +85,10 @@ the given path you provide (in tuple format).</doc>
 <arg>${recived_response}</arg>
 <arg>${STATUS_CODE_OK}</arg>
 </arguments>
-<msg timestamp="20200708 10:49:19.407" level="INFO">Argument types are:
+<msg timestamp="20200708 15:11:44.068" level="INFO">Argument types are:
 &lt;class 'int'&gt;
 &lt;type 'unicode'&gt;</msg>
-<status status="PASS" starttime="20200708 10:49:19.407" endtime="20200708 10:49:19.407"></status>
+<status status="PASS" starttime="20200708 15:11:44.068" endtime="20200708 15:11:44.068"></status>
 </kw>
 <kw name="Should Be Equal As Integers" library="BuiltIn">
 <doc>Fails if objects are unequal after converting them to integers.</doc>
@@ -102,21 +96,16 @@ the given path you provide (in tuple format).</doc>
 <arg>${id}</arg>
 <arg>${sent_id}</arg>
 </arguments>
-<status status="PASS" starttime="20200708 10:49:19.407" endtime="20200708 10:49:19.408"></status>
+<status status="PASS" starttime="20200708 15:11:44.068" endtime="20200708 15:11:44.068"></status>
 </kw>
-<status status="PASS" starttime="20200708 10:49:19.129" endtime="20200708 10:49:19.408"></status>
+<status status="PASS" starttime="20200708 15:11:43.777" endtime="20200708 15:11:44.068"></status>
 </kw>
-<status status="PASS" starttime="20200708 10:49:19.129" endtime="20200708 10:49:19.408" critical="yes"></status>
-</test>
-<test id="s1-t3" name="Specific User Not Found">
 <kw name="single user not found Test" library="Keywords">
 <tags>
-<tag>lpn</tag>
+<tag>GET</tag>
 </tags>
-<doc>Calls the API to return the siblings of the LPN passed in. Expected result
-is the API returns the six LPNs before and the six LPNs after the one that was passed up.
-It returns the case tied to each LPN, the po tied to the case, and the current location
-of the LPN. NOTE - These wouldnt necessarily be populated.</doc>
+<doc>Calls the API to return the response status code.
+Expected result is the API returns 404 status code not found.</doc>
 <kw name="Evaluate" library="BuiltIn">
 <doc>Evaluates the given expression in Python and returns the result.</doc>
 <arguments>
@@ -126,23 +115,23 @@ of the LPN. NOTE - These wouldnt necessarily be populated.</doc>
 <assign>
 <var>${id}</var>
 </assign>
-<msg timestamp="20200708 10:49:19.411" level="INFO">${id} = 100</msg>
-<status status="PASS" starttime="20200708 10:49:19.411" endtime="20200708 10:49:19.411"></status>
+<msg timestamp="20200708 15:11:44.070" level="INFO">${id} = 34</msg>
+<status status="PASS" starttime="20200708 15:11:44.069" endtime="20200708 15:11:44.070"></status>
 </kw>
 <kw name="Single User Not Found" library="APITests">
 <doc>Documentation: This function uses the provided user_id to send an API request
-using python's requests library. It should return the json data
-that contains the specific data you are hoping to find. This function only returns the data with
-the given path you provide (in tuple format).</doc>
+using python's requests library (GET method). It should return the json data
+that contains the specific data you are hoping to find. This function only returns
+the data with the given path you provide (in tuple format).</doc>
 <arguments>
 <arg>${id}</arg>
 </arguments>
 <assign>
 <var>${recived_response}</var>
 </assign>
-<msg timestamp="20200708 10:49:19.682" level="INFO">404</msg>
-<msg timestamp="20200708 10:49:19.682" level="INFO">${recived_response} = 404</msg>
-<status status="PASS" starttime="20200708 10:49:19.412" endtime="20200708 10:49:19.682"></status>
+<msg timestamp="20200708 15:11:44.338" level="INFO">404</msg>
+<msg timestamp="20200708 15:11:44.339" level="INFO">${recived_response} = 404</msg>
+<status status="PASS" starttime="20200708 15:11:44.070" endtime="20200708 15:11:44.339"></status>
 </kw>
 <kw name="Should Be Equal As Integers" library="BuiltIn">
 <doc>Fails if objects are unequal after converting them to integers.</doc>
@@ -150,22 +139,66 @@ the given path you provide (in tuple format).</doc>
 <arg>${recived_response}</arg>
 <arg>${STATUS_CODE_NOT_FOUND}</arg>
 </arguments>
-<msg timestamp="20200708 10:49:19.682" level="INFO">Argument types are:
+<msg timestamp="20200708 15:11:44.339" level="INFO">Argument types are:
 &lt;class 'int'&gt;
 &lt;type 'unicode'&gt;</msg>
-<status status="PASS" starttime="20200708 10:49:19.682" endtime="20200708 10:49:19.682"></status>
+<status status="PASS" starttime="20200708 15:11:44.339" endtime="20200708 15:11:44.339"></status>
 </kw>
-<status status="PASS" starttime="20200708 10:49:19.411" endtime="20200708 10:49:19.683"></status>
+<status status="PASS" starttime="20200708 15:11:44.069" endtime="20200708 15:11:44.339"></status>
 </kw>
-<status status="PASS" starttime="20200708 10:49:19.410" endtime="20200708 10:49:19.683" critical="yes"></status>
+<kw name="delayed response test" library="Keywords">
+<tags>
+<tag>GET</tag>
+</tags>
+<doc>Calls the API to return the response status code (OK) and total number of users.
+Expected result is the API returns a code 200 success (OK) and 12 total users.</doc>
+<kw name="Delayed Response" library="APITests">
+<doc>Documentation: This function uses the url to send an API request
+using python's requests library (GET request). It should return the json data
+that contains the specific data you are hoping to find. This
+function only returns the data with the given path you provide (in tuple format).</doc>
+<assign>
+<var>${recived_response}</var>
+<var>${users_total}</var>
+</assign>
+<msg timestamp="20200708 15:11:47.608" level="INFO">${recived_response} = 200</msg>
+<msg timestamp="20200708 15:11:47.608" level="INFO">${users_total} = 12</msg>
+<status status="PASS" starttime="20200708 15:11:44.340" endtime="20200708 15:11:47.608"></status>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${recived_response}</arg>
+<arg>${STATUS_CODE_OK}</arg>
+</arguments>
+<msg timestamp="20200708 15:11:47.608" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" starttime="20200708 15:11:47.608" endtime="20200708 15:11:47.608"></status>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${users_total}</arg>
+<arg>${TOTAL_NUMBER_OF_USERS}</arg>
+</arguments>
+<msg timestamp="20200708 15:11:47.608" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" starttime="20200708 15:11:47.608" endtime="20200708 15:11:47.609"></status>
+</kw>
+<status status="PASS" starttime="20200708 15:11:44.340" endtime="20200708 15:11:47.609"></status>
+</kw>
+<status status="PASS" starttime="20200708 15:11:43.332" endtime="20200708 15:11:47.609" critical="yes"></status>
 </test>
-<test id="s1-t4" name="Create A User">
+<test id="s1-t2" name="Alter Data Tests">
 <kw name="Create a New User and Verify it was created" library="Keywords">
 <tags>
-<tag>lpn</tag>
+<tag>POST</tag>
 </tags>
-<doc>Calls the API to return the entire history of an LPN. Expected result is the
-API returns the history of an LPN</doc>
+<doc>Calls the API to return the response status code (CREATED) name and job from the response body.
+Expected result is the API returns 201 status code (CREATED) . name, job of the sent request should
+be the same from the response data.</doc>
 <kw name="Set Variable" library="BuiltIn">
 <doc>Returns the given values which can then be assigned to a variables.</doc>
 <arguments>
@@ -174,8 +207,8 @@ API returns the history of an LPN</doc>
 <assign>
 <var>${created_name}</var>
 </assign>
-<msg timestamp="20200708 10:49:19.685" level="INFO">${created_name} = ahmad</msg>
-<status status="PASS" starttime="20200708 10:49:19.685" endtime="20200708 10:49:19.685"></status>
+<msg timestamp="20200708 15:11:47.612" level="INFO">${created_name} = ahmad</msg>
+<status status="PASS" starttime="20200708 15:11:47.611" endtime="20200708 15:11:47.612"></status>
 </kw>
 <kw name="Set Variable" library="BuiltIn">
 <doc>Returns the given values which can then be assigned to a variables.</doc>
@@ -185,13 +218,13 @@ API returns the history of an LPN</doc>
 <assign>
 <var>${created_job}</var>
 </assign>
-<msg timestamp="20200708 10:49:19.686" level="INFO">${created_job} = Actor</msg>
-<status status="PASS" starttime="20200708 10:49:19.685" endtime="20200708 10:49:19.686"></status>
+<msg timestamp="20200708 15:11:47.612" level="INFO">${created_job} = Actor</msg>
+<status status="PASS" starttime="20200708 15:11:47.612" endtime="20200708 15:11:47.612"></status>
 </kw>
 <kw name="Create User" library="APITests">
 <doc>Documentation: This function uses the provided user_name and user_job post a request
-using python's requests library. It Creates a new user with the given parameters.
-This function only returns the data in tuple format.</doc>
+using python's requests library (POST request). It Creates a new user with the given
+parameters.This function only returns the data in tuple format.</doc>
 <arguments>
 <arg>${created_name}</arg>
 <arg>${created_job}</arg>
@@ -201,10 +234,10 @@ This function only returns the data in tuple format.</doc>
 <var>${new_user_job}</var>
 <var>${response_status}</var>
 </assign>
-<msg timestamp="20200708 10:49:19.996" level="INFO">${new_user_name} = ahmad</msg>
-<msg timestamp="20200708 10:49:19.996" level="INFO">${new_user_job} = Actor</msg>
-<msg timestamp="20200708 10:49:19.996" level="INFO">${response_status} = 201</msg>
-<status status="PASS" starttime="20200708 10:49:19.686" endtime="20200708 10:49:19.996"></status>
+<msg timestamp="20200708 15:11:47.895" level="INFO">${new_user_name} = ahmad</msg>
+<msg timestamp="20200708 15:11:47.895" level="INFO">${new_user_job} = Actor</msg>
+<msg timestamp="20200708 15:11:47.895" level="INFO">${response_status} = 201</msg>
+<status status="PASS" starttime="20200708 15:11:47.612" endtime="20200708 15:11:47.895"></status>
 </kw>
 <kw name="Should Be Equal As Integers" library="BuiltIn">
 <doc>Fails if objects are unequal after converting them to integers.</doc>
@@ -212,10 +245,10 @@ This function only returns the data in tuple format.</doc>
 <arg>${response_status}</arg>
 <arg>${STATUS_CODE_CREATED}</arg>
 </arguments>
-<msg timestamp="20200708 10:49:19.996" level="INFO">Argument types are:
+<msg timestamp="20200708 15:11:47.896" level="INFO">Argument types are:
 &lt;class 'int'&gt;
 &lt;type 'unicode'&gt;</msg>
-<status status="PASS" starttime="20200708 10:49:19.996" endtime="20200708 10:49:19.996"></status>
+<status status="PASS" starttime="20200708 15:11:47.895" endtime="20200708 15:11:47.896"></status>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <doc>Fails if objects are unequal after converting them to strings.</doc>
@@ -223,7 +256,7 @@ This function only returns the data in tuple format.</doc>
 <arg>${created_name}</arg>
 <arg>${new_user_name}</arg>
 </arguments>
-<status status="PASS" starttime="20200708 10:49:19.996" endtime="20200708 10:49:19.997"></status>
+<status status="PASS" starttime="20200708 15:11:47.896" endtime="20200708 15:11:47.896"></status>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <doc>Fails if objects are unequal after converting them to strings.</doc>
@@ -231,21 +264,17 @@ This function only returns the data in tuple format.</doc>
 <arg>${created_job}</arg>
 <arg>${new_user_job}</arg>
 </arguments>
-<status status="PASS" starttime="20200708 10:49:19.997" endtime="20200708 10:49:19.997"></status>
+<status status="PASS" starttime="20200708 15:11:47.896" endtime="20200708 15:11:47.896"></status>
 </kw>
-<status status="PASS" starttime="20200708 10:49:19.685" endtime="20200708 10:49:19.997"></status>
+<status status="PASS" starttime="20200708 15:11:47.611" endtime="20200708 15:11:47.897"></status>
 </kw>
-<status status="PASS" starttime="20200708 10:49:19.684" endtime="20200708 10:49:19.998" critical="yes"></status>
-</test>
-<test id="s1-t5" name="Update A User">
 <kw name="Update User and Verify it has been updated" library="Keywords">
 <tags>
-<tag>lpn</tag>
+<tag>PUT</tag>
 </tags>
-<doc>Calls the API to return the siblings of the LPN passed in. Expected result
-is the API returns the six LPNs before and the six LPNs after the one that was passed up.
-It returns the case tied to each LPN, the po tied to the case, and the current location
-of the LPN. NOTE - These wouldnt necessarily be populated.</doc>
+<doc>Calls the API to return the response status code, updates name and job from the response body.
+Expected result is the API returns 200 status code OK. name, job of the sent request should be
+the same from the response data.</doc>
 <kw name="Evaluate" library="BuiltIn">
 <doc>Evaluates the given expression in Python and returns the result.</doc>
 <arguments>
@@ -255,8 +284,8 @@ of the LPN. NOTE - These wouldnt necessarily be populated.</doc>
 <assign>
 <var>${user_ID}</var>
 </assign>
-<msg timestamp="20200708 10:49:20.000" level="INFO">${user_ID} = 10</msg>
-<status status="PASS" starttime="20200708 10:49:20.000" endtime="20200708 10:49:20.000"></status>
+<msg timestamp="20200708 15:11:47.898" level="INFO">${user_ID} = 4</msg>
+<status status="PASS" starttime="20200708 15:11:47.898" endtime="20200708 15:11:47.898"></status>
 </kw>
 <kw name="Set Variable" library="BuiltIn">
 <doc>Returns the given values which can then be assigned to a variables.</doc>
@@ -266,8 +295,8 @@ of the LPN. NOTE - These wouldnt necessarily be populated.</doc>
 <assign>
 <var>${new_name}</var>
 </assign>
-<msg timestamp="20200708 10:49:20.001" level="INFO">${new_name} = ahmad</msg>
-<status status="PASS" starttime="20200708 10:49:20.001" endtime="20200708 10:49:20.001"></status>
+<msg timestamp="20200708 15:11:47.898" level="INFO">${new_name} = ahmad</msg>
+<status status="PASS" starttime="20200708 15:11:47.898" endtime="20200708 15:11:47.898"></status>
 </kw>
 <kw name="Set Variable" library="BuiltIn">
 <doc>Returns the given values which can then be assigned to a variables.</doc>
@@ -277,12 +306,12 @@ of the LPN. NOTE - These wouldnt necessarily be populated.</doc>
 <assign>
 <var>${new_job}</var>
 </assign>
-<msg timestamp="20200708 10:49:20.001" level="INFO">${new_job} = Actor</msg>
-<status status="PASS" starttime="20200708 10:49:20.001" endtime="20200708 10:49:20.001"></status>
+<msg timestamp="20200708 15:11:47.898" level="INFO">${new_job} = Actor</msg>
+<status status="PASS" starttime="20200708 15:11:47.898" endtime="20200708 15:11:47.898"></status>
 </kw>
 <kw name="Update User" library="APITests">
 <doc>Documentation: This function uses the provided user ID to update the specific user
-using python's requests library. It updates the specific user with the given parameters.
+using python's requests library (PUT method). It updates the specific user with the given parameters.
 This function returns the response data (name, job) from the request in tuple format.</doc>
 <arguments>
 <arg>${user_ID}</arg>
@@ -294,10 +323,10 @@ This function returns the response data (name, job) from the request in tuple fo
 <var>${updated_user_job}</var>
 <var>${received_status}</var>
 </assign>
-<msg timestamp="20200708 10:49:20.264" level="INFO">${updated_user_name} = ahmad</msg>
-<msg timestamp="20200708 10:49:20.264" level="INFO">${updated_user_job} = Actor</msg>
-<msg timestamp="20200708 10:49:20.264" level="INFO">${received_status} = 200</msg>
-<status status="PASS" starttime="20200708 10:49:20.001" endtime="20200708 10:49:20.264"></status>
+<msg timestamp="20200708 15:11:48.159" level="INFO">${updated_user_name} = ahmad</msg>
+<msg timestamp="20200708 15:11:48.159" level="INFO">${updated_user_job} = Actor</msg>
+<msg timestamp="20200708 15:11:48.159" level="INFO">${received_status} = 200</msg>
+<status status="PASS" starttime="20200708 15:11:47.898" endtime="20200708 15:11:48.159"></status>
 </kw>
 <kw name="Should Be Equal As Integers" library="BuiltIn">
 <doc>Fails if objects are unequal after converting them to integers.</doc>
@@ -305,10 +334,10 @@ This function returns the response data (name, job) from the request in tuple fo
 <arg>${received_status}</arg>
 <arg>${STATUS_CODE_OK}</arg>
 </arguments>
-<msg timestamp="20200708 10:49:20.264" level="INFO">Argument types are:
+<msg timestamp="20200708 15:11:48.160" level="INFO">Argument types are:
 &lt;class 'int'&gt;
 &lt;type 'unicode'&gt;</msg>
-<status status="PASS" starttime="20200708 10:49:20.264" endtime="20200708 10:49:20.264"></status>
+<status status="PASS" starttime="20200708 15:11:48.159" endtime="20200708 15:11:48.160"></status>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <doc>Fails if objects are unequal after converting them to strings.</doc>
@@ -316,7 +345,7 @@ This function returns the response data (name, job) from the request in tuple fo
 <arg>${new_name}</arg>
 <arg>${updated_user_name}</arg>
 </arguments>
-<status status="PASS" starttime="20200708 10:49:20.264" endtime="20200708 10:49:20.265"></status>
+<status status="PASS" starttime="20200708 15:11:48.160" endtime="20200708 15:11:48.160"></status>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <doc>Fails if objects are unequal after converting them to strings.</doc>
@@ -324,21 +353,16 @@ This function returns the response data (name, job) from the request in tuple fo
 <arg>${new_job}</arg>
 <arg>${updated_user_job}</arg>
 </arguments>
-<status status="PASS" starttime="20200708 10:49:20.265" endtime="20200708 10:49:20.265"></status>
+<status status="PASS" starttime="20200708 15:11:48.160" endtime="20200708 15:11:48.160"></status>
 </kw>
-<status status="PASS" starttime="20200708 10:49:20.000" endtime="20200708 10:49:20.265"></status>
+<status status="PASS" starttime="20200708 15:11:47.897" endtime="20200708 15:11:48.160"></status>
 </kw>
-<status status="PASS" starttime="20200708 10:49:19.999" endtime="20200708 10:49:20.265" critical="yes"></status>
-</test>
-<test id="s1-t6" name="Delete A User">
 <kw name="Delete User and Verify it Has been Deleted" library="Keywords">
 <tags>
-<tag>lpn</tag>
+<tag>POST</tag>
 </tags>
-<doc>Calls the API to return the siblings of the LPN passed in. Expected result
-is the API returns the six LPNs before and the six LPNs after the one that was passed up.
-It returns the case tied to each LPN, the po tied to the case, and the current location
-of the LPN. NOTE - These wouldnt necessarily be populated.</doc>
+<doc>Calls the API to return the response status code NO CONTENT.
+Expected result is the API returns 204 status code NO CONTENT.</doc>
 <kw name="Evaluate" library="BuiltIn">
 <doc>Evaluates the given expression in Python and returns the result.</doc>
 <arguments>
@@ -348,8 +372,8 @@ of the LPN. NOTE - These wouldnt necessarily be populated.</doc>
 <assign>
 <var>${User_ID}</var>
 </assign>
-<msg timestamp="20200708 10:49:20.268" level="INFO">${User_ID} = 9</msg>
-<status status="PASS" starttime="20200708 10:49:20.267" endtime="20200708 10:49:20.268"></status>
+<msg timestamp="20200708 15:11:48.162" level="INFO">${User_ID} = 11</msg>
+<status status="PASS" starttime="20200708 15:11:48.161" endtime="20200708 15:11:48.162"></status>
 </kw>
 <kw name="Delete User" library="APITests">
 <doc>Documentation: This function uses the provided user ID to delete a specific user
@@ -361,8 +385,8 @@ status data.</doc>
 <assign>
 <var>${received_response}</var>
 </assign>
-<msg timestamp="20200708 10:49:20.534" level="INFO">${received_response} = 204</msg>
-<status status="PASS" starttime="20200708 10:49:20.268" endtime="20200708 10:49:20.534"></status>
+<msg timestamp="20200708 15:11:48.428" level="INFO">${received_response} = 204</msg>
+<status status="PASS" starttime="20200708 15:11:48.162" endtime="20200708 15:11:48.428"></status>
 </kw>
 <kw name="Should Be Equal As Integers" library="BuiltIn">
 <doc>Fails if objects are unequal after converting them to integers.</doc>
@@ -370,24 +394,22 @@ status data.</doc>
 <arg>${received_response}</arg>
 <arg>${STATUS_CODE_NO_CONTENT}</arg>
 </arguments>
-<msg timestamp="20200708 10:49:20.534" level="INFO">Argument types are:
+<msg timestamp="20200708 15:11:48.429" level="INFO">Argument types are:
 &lt;class 'int'&gt;
 &lt;type 'unicode'&gt;</msg>
-<status status="PASS" starttime="20200708 10:49:20.534" endtime="20200708 10:49:20.534"></status>
+<status status="PASS" starttime="20200708 15:11:48.428" endtime="20200708 15:11:48.429"></status>
 </kw>
-<status status="PASS" starttime="20200708 10:49:20.267" endtime="20200708 10:49:20.535"></status>
+<status status="PASS" starttime="20200708 15:11:48.161" endtime="20200708 15:11:48.429"></status>
 </kw>
-<status status="PASS" starttime="20200708 10:49:20.266" endtime="20200708 10:49:20.535" critical="yes"></status>
+<status status="PASS" starttime="20200708 15:11:47.611" endtime="20200708 15:11:48.430" critical="yes"></status>
 </test>
-<test id="s1-t7" name="Successfull Registration">
+<test id="s1-t3" name="Authorization Tests">
 <kw name="Successfull Registration Test" library="Keywords">
 <tags>
-<tag>lpn</tag>
+<tag>POST</tag>
 </tags>
-<doc>Calls the API to return the siblings of the LPN passed in. Expected result
-is the API returns the six LPNs before and the six LPNs after the one that was passed up.
-It returns the case tied to each LPN, the po tied to the case, and the current location
-of the LPN. NOTE - These wouldnt necessarily be populated.</doc>
+<doc>Calls the API to return the response status code (OK) , created id and token.
+Expected result is the API returns 200 status code (OK) , an id and token for successfull registration.</doc>
 <kw name="Set Variable" library="BuiltIn">
 <doc>Returns the given values which can then be assigned to a variables.</doc>
 <arguments>
@@ -396,8 +418,8 @@ of the LPN. NOTE - These wouldnt necessarily be populated.</doc>
 <assign>
 <var>${user_email}</var>
 </assign>
-<msg timestamp="20200708 10:49:20.537" level="INFO">${user_email} = eve.holt@reqres.in</msg>
-<status status="PASS" starttime="20200708 10:49:20.537" endtime="20200708 10:49:20.537"></status>
+<msg timestamp="20200708 15:11:48.432" level="INFO">${user_email} = eve.holt@reqres.in</msg>
+<status status="PASS" starttime="20200708 15:11:48.432" endtime="20200708 15:11:48.432"></status>
 </kw>
 <kw name="Set Variable" library="BuiltIn">
 <doc>Returns the given values which can then be assigned to a variables.</doc>
@@ -407,8 +429,8 @@ of the LPN. NOTE - These wouldnt necessarily be populated.</doc>
 <assign>
 <var>${password}</var>
 </assign>
-<msg timestamp="20200708 10:49:20.537" level="INFO">${password} = qwerty</msg>
-<status status="PASS" starttime="20200708 10:49:20.537" endtime="20200708 10:49:20.538"></status>
+<msg timestamp="20200708 15:11:48.432" level="INFO">${password} = qwerty</msg>
+<status status="PASS" starttime="20200708 15:11:48.432" endtime="20200708 15:11:48.432"></status>
 </kw>
 <kw name="Successful Registration" library="APITests">
 <doc>Documentation: This function uses the provided user user_email and user_password to register
@@ -424,25 +446,25 @@ request in tuple format.</doc>
 <var>${created_token}</var>
 <var>${verify_successful_registration}</var>
 </assign>
-<msg timestamp="20200708 10:49:20.811" level="INFO">${created_id} = 4</msg>
-<msg timestamp="20200708 10:49:20.811" level="INFO">${created_token} = QpwL5tke4Pnpja7X4</msg>
-<msg timestamp="20200708 10:49:20.811" level="INFO">${verify_successful_registration} = 200</msg>
-<status status="PASS" starttime="20200708 10:49:20.538" endtime="20200708 10:49:20.811"></status>
+<msg timestamp="20200708 15:11:48.714" level="INFO">${created_id} = 4</msg>
+<msg timestamp="20200708 15:11:48.714" level="INFO">${created_token} = QpwL5tke4Pnpja7X4</msg>
+<msg timestamp="20200708 15:11:48.714" level="INFO">${verify_successful_registration} = 200</msg>
+<status status="PASS" starttime="20200708 15:11:48.432" endtime="20200708 15:11:48.714"></status>
 </kw>
 <kw name="Variable Should Exist" library="BuiltIn">
 <doc>Fails unless the given variable exists within the current scope.</doc>
 <arguments>
 <arg>${created_id}</arg>
 </arguments>
-<status status="PASS" starttime="20200708 10:49:20.811" endtime="20200708 10:49:20.812"></status>
+<status status="PASS" starttime="20200708 15:11:48.714" endtime="20200708 15:11:48.714"></status>
 </kw>
 <kw name="Should Not Be Empty" library="BuiltIn">
 <doc>Verifies that the given item is not empty.</doc>
 <arguments>
 <arg>${created_token}</arg>
 </arguments>
-<msg timestamp="20200708 10:49:20.812" level="INFO">Length is 17</msg>
-<status status="PASS" starttime="20200708 10:49:20.812" endtime="20200708 10:49:20.812"></status>
+<msg timestamp="20200708 15:11:48.714" level="INFO">Length is 17</msg>
+<status status="PASS" starttime="20200708 15:11:48.714" endtime="20200708 15:11:48.715"></status>
 </kw>
 <kw name="Should Be Equal As Integers" library="BuiltIn">
 <doc>Fails if objects are unequal after converting them to integers.</doc>
@@ -450,24 +472,19 @@ request in tuple format.</doc>
 <arg>${verify_successful_registration}</arg>
 <arg>${STATUS_CODE_OK}</arg>
 </arguments>
-<msg timestamp="20200708 10:49:20.812" level="INFO">Argument types are:
+<msg timestamp="20200708 15:11:48.715" level="INFO">Argument types are:
 &lt;class 'int'&gt;
 &lt;type 'unicode'&gt;</msg>
-<status status="PASS" starttime="20200708 10:49:20.812" endtime="20200708 10:49:20.812"></status>
+<status status="PASS" starttime="20200708 15:11:48.715" endtime="20200708 15:11:48.715"></status>
 </kw>
-<status status="PASS" starttime="20200708 10:49:20.537" endtime="20200708 10:49:20.812"></status>
+<status status="PASS" starttime="20200708 15:11:48.431" endtime="20200708 15:11:48.715"></status>
 </kw>
-<status status="PASS" starttime="20200708 10:49:20.537" endtime="20200708 10:49:20.813" critical="yes"></status>
-</test>
-<test id="s1-t8" name="UnSucessfull Registration">
 <kw name="UnSuccessfull Registration Test" library="Keywords">
 <tags>
-<tag>lpn</tag>
+<tag>POST</tag>
 </tags>
-<doc>Calls the API to return the siblings of the LPN passed in. Expected result
-is the API returns the six LPNs before and the six LPNs after the one that was passed up.
-It returns the case tied to each LPN, the po tied to the case, and the current location
-of the LPN. NOTE - These wouldnt necessarily be populated.</doc>
+<doc>Calls the API to return the response status code (BAD REQUEST).
+Expected result is the API returns 400 status code (BAD REQUEST).</doc>
 <kw name="Set Variable" library="BuiltIn">
 <doc>Returns the given values which can then be assigned to a variables.</doc>
 <arguments>
@@ -476,8 +493,8 @@ of the LPN. NOTE - These wouldnt necessarily be populated.</doc>
 <assign>
 <var>${user_email}</var>
 </assign>
-<msg timestamp="20200708 10:49:20.816" level="INFO">${user_email} = ahmad@reqers.in</msg>
-<status status="PASS" starttime="20200708 10:49:20.815" endtime="20200708 10:49:20.816"></status>
+<msg timestamp="20200708 15:11:48.716" level="INFO">${user_email} = ahmad@reqers.in</msg>
+<status status="PASS" starttime="20200708 15:11:48.716" endtime="20200708 15:11:48.716"></status>
 </kw>
 <kw name="Set Variable" library="BuiltIn">
 <doc>Returns the given values which can then be assigned to a variables.</doc>
@@ -487,13 +504,13 @@ of the LPN. NOTE - These wouldnt necessarily be populated.</doc>
 <assign>
 <var>${password}</var>
 </assign>
-<msg timestamp="20200708 10:49:20.816" level="INFO">${password} = qwerty</msg>
-<status status="PASS" starttime="20200708 10:49:20.816" endtime="20200708 10:49:20.816"></status>
+<msg timestamp="20200708 15:11:48.716" level="INFO">${password} = qwerty</msg>
+<status status="PASS" starttime="20200708 15:11:48.716" endtime="20200708 15:11:48.716"></status>
 </kw>
 <kw name="Unsuccessful Registration" library="APITests">
-<doc>Documentation: Takes a value such as a string to search against a regular expression.
-To search for a specific regex value input into exp_value, set "escape_regex_chars" to False:
-escape_regex_chars=False.</doc>
+<doc>Documentation: This function uses the provided user user_email and user_password to register
+using python's requests library (POST method). It sends email, password details.This function
+returns the response data (response status code) from the request.</doc>
 <arguments>
 <arg>${user_email}</arg>
 <arg>${password}</arg>
@@ -501,8 +518,8 @@ escape_regex_chars=False.</doc>
 <assign>
 <var>${verify_unSuccessful_registration}</var>
 </assign>
-<msg timestamp="20200708 10:49:21.081" level="INFO">${verify_unSuccessful_registration} = 400</msg>
-<status status="PASS" starttime="20200708 10:49:20.816" endtime="20200708 10:49:21.081"></status>
+<msg timestamp="20200708 15:11:48.978" level="INFO">${verify_unSuccessful_registration} = 400</msg>
+<status status="PASS" starttime="20200708 15:11:48.716" endtime="20200708 15:11:48.978"></status>
 </kw>
 <kw name="Should Be Equal As Integers" library="BuiltIn">
 <doc>Fails if objects are unequal after converting them to integers.</doc>
@@ -510,24 +527,19 @@ escape_regex_chars=False.</doc>
 <arg>${verify_unSuccessful_registration}</arg>
 <arg>${STATUS_CODE_BAD_REQUEST}</arg>
 </arguments>
-<msg timestamp="20200708 10:49:21.082" level="INFO">Argument types are:
+<msg timestamp="20200708 15:11:48.978" level="INFO">Argument types are:
 &lt;class 'int'&gt;
 &lt;type 'unicode'&gt;</msg>
-<status status="PASS" starttime="20200708 10:49:21.081" endtime="20200708 10:49:21.082"></status>
+<status status="PASS" starttime="20200708 15:11:48.978" endtime="20200708 15:11:48.978"></status>
 </kw>
-<status status="PASS" starttime="20200708 10:49:20.815" endtime="20200708 10:49:21.082"></status>
+<status status="PASS" starttime="20200708 15:11:48.716" endtime="20200708 15:11:48.978"></status>
 </kw>
-<status status="PASS" starttime="20200708 10:49:20.815" endtime="20200708 10:49:21.083" critical="yes"></status>
-</test>
-<test id="s1-t9" name="Sucessfull Login">
 <kw name="Successfull Login Test" library="Keywords">
 <tags>
-<tag>lpn</tag>
+<tag>POST</tag>
 </tags>
-<doc>Calls the API to return the siblings of the LPN passed in. Expected result
-is the API returns the six LPNs before and the six LPNs after the one that was passed up.
-It returns the case tied to each LPN, the po tied to the case, and the current location
-of the LPN. NOTE - These wouldnt necessarily be populated.</doc>
+<doc>Calls the API to return the response status code (OK) and token.
+Expected result is the API returns 200 status code (OK) and token for successfull login.</doc>
 <kw name="Set Variable" library="BuiltIn">
 <doc>Returns the given values which can then be assigned to a variables.</doc>
 <arguments>
@@ -536,8 +548,8 @@ of the LPN. NOTE - These wouldnt necessarily be populated.</doc>
 <assign>
 <var>${user_email}</var>
 </assign>
-<msg timestamp="20200708 10:49:21.085" level="INFO">${user_email} = eve.holt@reqres.in</msg>
-<status status="PASS" starttime="20200708 10:49:21.085" endtime="20200708 10:49:21.085"></status>
+<msg timestamp="20200708 15:11:48.980" level="INFO">${user_email} = eve.holt@reqres.in</msg>
+<status status="PASS" starttime="20200708 15:11:48.980" endtime="20200708 15:11:48.980"></status>
 </kw>
 <kw name="Set Variable" library="BuiltIn">
 <doc>Returns the given values which can then be assigned to a variables.</doc>
@@ -547,22 +559,32 @@ of the LPN. NOTE - These wouldnt necessarily be populated.</doc>
 <assign>
 <var>${password}</var>
 </assign>
-<msg timestamp="20200708 10:49:21.085" level="INFO">${password} = qwerty</msg>
-<status status="PASS" starttime="20200708 10:49:21.085" endtime="20200708 10:49:21.085"></status>
+<msg timestamp="20200708 15:11:48.980" level="INFO">${password} = qwerty</msg>
+<status status="PASS" starttime="20200708 15:11:48.980" endtime="20200708 15:11:48.980"></status>
 </kw>
 <kw name="Successful Login" library="APITests">
-<doc>Documentation: Takes a value such as a string to search against a regular expression.
-To search for a specific regex value input into exp_value, set "escape_regex_chars" to False:
-escape_regex_chars=False.</doc>
+<doc>Documentation: This function uses the provided user user_email and user_password to login
+using python's requests library (POST method). It sends email, password details.This function
+returns the response data (login token, response status code) from the request in tuple format.</doc>
 <arguments>
 <arg>${user_Email}</arg>
 <arg>${password}</arg>
 </arguments>
 <assign>
+<var>${response_token}</var>
 <var>${verify_Successful_Login}</var>
 </assign>
-<msg timestamp="20200708 10:49:21.360" level="INFO">${verify_Successful_Login} = 200</msg>
-<status status="PASS" starttime="20200708 10:49:21.085" endtime="20200708 10:49:21.360"></status>
+<msg timestamp="20200708 15:11:49.240" level="INFO">${response_token} = QpwL5tke4Pnpja7X4</msg>
+<msg timestamp="20200708 15:11:49.240" level="INFO">${verify_Successful_Login} = 200</msg>
+<status status="PASS" starttime="20200708 15:11:48.980" endtime="20200708 15:11:49.240"></status>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<doc>Verifies that the given item is not empty.</doc>
+<arguments>
+<arg>${response_token}</arg>
+</arguments>
+<msg timestamp="20200708 15:11:49.241" level="INFO">Length is 17</msg>
+<status status="PASS" starttime="20200708 15:11:49.240" endtime="20200708 15:11:49.241"></status>
 </kw>
 <kw name="Should Be Equal As Integers" library="BuiltIn">
 <doc>Fails if objects are unequal after converting them to integers.</doc>
@@ -570,24 +592,19 @@ escape_regex_chars=False.</doc>
 <arg>${verify_successful_login}</arg>
 <arg>${STATUS_CODE_OK}</arg>
 </arguments>
-<msg timestamp="20200708 10:49:21.361" level="INFO">Argument types are:
+<msg timestamp="20200708 15:11:49.241" level="INFO">Argument types are:
 &lt;class 'int'&gt;
 &lt;type 'unicode'&gt;</msg>
-<status status="PASS" starttime="20200708 10:49:21.361" endtime="20200708 10:49:21.361"></status>
+<status status="PASS" starttime="20200708 15:11:49.241" endtime="20200708 15:11:49.241"></status>
 </kw>
-<status status="PASS" starttime="20200708 10:49:21.085" endtime="20200708 10:49:21.361"></status>
+<status status="PASS" starttime="20200708 15:11:48.979" endtime="20200708 15:11:49.241"></status>
 </kw>
-<status status="PASS" starttime="20200708 10:49:21.084" endtime="20200708 10:49:21.362" critical="yes"></status>
-</test>
-<test id="s1-t10" name="UnSucessfull Login">
 <kw name="UnSuccessfull login Test" library="Keywords">
 <tags>
-<tag>lpn</tag>
+<tag>POST</tag>
 </tags>
-<doc>Calls the API to return the siblings of the LPN passed in. Expected result
-is the API returns the six LPNs before and the six LPNs after the one that was passed up.
-It returns the case tied to each LPN, the po tied to the case, and the current location
-of the LPN. NOTE - These wouldnt necessarily be populated.</doc>
+<doc>Calls the API to return the response status code (BAD REQUEST).
+Expected result is the API returns 400 status code (BAD REQUEST).</doc>
 <kw name="Set Variable" library="BuiltIn">
 <doc>Returns the given values which can then be assigned to a variables.</doc>
 <arguments>
@@ -596,8 +613,8 @@ of the LPN. NOTE - These wouldnt necessarily be populated.</doc>
 <assign>
 <var>${user_Email}</var>
 </assign>
-<msg timestamp="20200708 10:49:21.364" level="INFO">${user_Email} = ahmad@reqers.in</msg>
-<status status="PASS" starttime="20200708 10:49:21.364" endtime="20200708 10:49:21.364"></status>
+<msg timestamp="20200708 15:11:49.242" level="INFO">${user_Email} = ahmad@reqers.in</msg>
+<status status="PASS" starttime="20200708 15:11:49.242" endtime="20200708 15:11:49.242"></status>
 </kw>
 <kw name="Set Variable" library="BuiltIn">
 <doc>Returns the given values which can then be assigned to a variables.</doc>
@@ -607,13 +624,13 @@ of the LPN. NOTE - These wouldnt necessarily be populated.</doc>
 <assign>
 <var>${password}</var>
 </assign>
-<msg timestamp="20200708 10:49:21.364" level="INFO">${password} = qwerty</msg>
-<status status="PASS" starttime="20200708 10:49:21.364" endtime="20200708 10:49:21.364"></status>
+<msg timestamp="20200708 15:11:49.242" level="INFO">${password} = qwerty</msg>
+<status status="PASS" starttime="20200708 15:11:49.242" endtime="20200708 15:11:49.242"></status>
 </kw>
 <kw name="Unsuccessful Login" library="APITests">
-<doc>Documentation: Takes a value such as a string to search against a regular expression.
-To search for a specific regex value input into exp_value, set "escape_regex_chars" to False:
-escape_regex_chars=False.</doc>
+<doc>Documentation: This function uses the provided user user_email and user_password to login
+using python's requests library (POST method). It sends email, password details.This function
+returns the response data (response status code) from the reques.</doc>
 <arguments>
 <arg>${user_Email}</arg>
 <arg>${password}</arg>
@@ -621,8 +638,8 @@ escape_regex_chars=False.</doc>
 <assign>
 <var>${verify_unSuccessful_Login}</var>
 </assign>
-<msg timestamp="20200708 10:49:21.610" level="INFO">${verify_unSuccessful_Login} = 400</msg>
-<status status="PASS" starttime="20200708 10:49:21.364" endtime="20200708 10:49:21.610"></status>
+<msg timestamp="20200708 15:11:49.418" level="INFO">${verify_unSuccessful_Login} = 400</msg>
+<status status="PASS" starttime="20200708 15:11:49.243" endtime="20200708 15:11:49.418"></status>
 </kw>
 <kw name="Should Be Equal As Integers" library="BuiltIn">
 <doc>Fails if objects are unequal after converting them to integers.</doc>
@@ -630,73 +647,26 @@ escape_regex_chars=False.</doc>
 <arg>${verify_unSuccessful_login}</arg>
 <arg>${STATUS_CODE_BAD_REQUEST}</arg>
 </arguments>
-<msg timestamp="20200708 10:49:21.611" level="INFO">Argument types are:
+<msg timestamp="20200708 15:11:49.418" level="INFO">Argument types are:
 &lt;class 'int'&gt;
 &lt;type 'unicode'&gt;</msg>
-<status status="PASS" starttime="20200708 10:49:21.610" endtime="20200708 10:49:21.611"></status>
+<status status="PASS" starttime="20200708 15:11:49.418" endtime="20200708 15:11:49.418"></status>
 </kw>
-<status status="PASS" starttime="20200708 10:49:21.364" endtime="20200708 10:49:21.611"></status>
+<status status="PASS" starttime="20200708 15:11:49.242" endtime="20200708 15:11:49.418"></status>
 </kw>
-<status status="PASS" starttime="20200708 10:49:21.363" endtime="20200708 10:49:21.611" critical="yes"></status>
+<status status="PASS" starttime="20200708 15:11:48.431" endtime="20200708 15:11:49.419" critical="yes"></status>
 </test>
-<test id="s1-t11" name="Delayed Response">
-<kw name="delayed response test" library="Keywords">
-<tags>
-<tag>lpn</tag>
-</tags>
-<doc>Calls the API to return the siblings of the LPN passed in. Expected result
-is the API returns the six LPNs before and the six LPNs after the one that was passed up.
-It returns the case tied to each LPN, the po tied to the case, and the current location
-of the LPN. NOTE - These wouldnt necessarily be populated.</doc>
-<kw name="Delayed Response" library="APITests">
-<doc>Documentation: Takes a value such as a string to search against a regular expression.
-To search for a specific regex value input into exp_value, set "escape_regex_chars" to False:
-escape_regex_chars=False.</doc>
-<assign>
-<var>${recived_response}</var>
-<var>${users_total}</var>
-</assign>
-<msg timestamp="20200708 10:49:24.874" level="INFO">${recived_response} = 200</msg>
-<msg timestamp="20200708 10:49:24.874" level="INFO">${users_total} = 12</msg>
-<status status="PASS" starttime="20200708 10:49:21.613" endtime="20200708 10:49:24.874"></status>
-</kw>
-<kw name="Should Be Equal As Integers" library="BuiltIn">
-<doc>Fails if objects are unequal after converting them to integers.</doc>
-<arguments>
-<arg>${recived_response}</arg>
-<arg>${STATUS_CODE_OK}</arg>
-</arguments>
-<msg timestamp="20200708 10:49:24.875" level="INFO">Argument types are:
-&lt;class 'int'&gt;
-&lt;type 'unicode'&gt;</msg>
-<status status="PASS" starttime="20200708 10:49:24.874" endtime="20200708 10:49:24.875"></status>
-</kw>
-<kw name="Should Be Equal As Integers" library="BuiltIn">
-<doc>Fails if objects are unequal after converting them to integers.</doc>
-<arguments>
-<arg>${users_total}</arg>
-<arg>${TOTAL_NUMBER_OF_USERS}</arg>
-</arguments>
-<msg timestamp="20200708 10:49:24.875" level="INFO">Argument types are:
-&lt;class 'int'&gt;
-&lt;type 'unicode'&gt;</msg>
-<status status="PASS" starttime="20200708 10:49:24.875" endtime="20200708 10:49:24.875"></status>
-</kw>
-<status status="PASS" starttime="20200708 10:49:21.613" endtime="20200708 10:49:24.875"></status>
-</kw>
-<status status="PASS" starttime="20200708 10:49:21.612" endtime="20200708 10:49:24.876" critical="yes"></status>
-</test>
-<status status="PASS" starttime="20200708 10:49:18.453" endtime="20200708 10:49:24.877"></status>
+<status status="PASS" starttime="20200708 15:11:43.159" endtime="20200708 15:11:49.421"></status>
 </suite>
 <statistics>
 <total>
-<stat pass="11" fail="0">Critical Tests</stat>
-<stat pass="11" fail="0">All Tests</stat>
+<stat pass="3" fail="0">Critical Tests</stat>
+<stat pass="3" fail="0">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat pass="11" fail="0" id="s1" name="Tests">Tests</stat>
+<stat pass="3" fail="0" id="s1" name="Tests">Tests</stat>
 </suite>
 </statistics>
 <errors>

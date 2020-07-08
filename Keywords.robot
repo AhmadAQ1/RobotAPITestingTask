@@ -7,10 +7,10 @@ ${STATUS_CODE_CREATED}  201
 ${STATUS_CODE_NO_CONTENT}  204
 ${STATUS_CODE_BAD_REQUEST}  400
 ${STATUS_CODE_NOT_FOUND}  404
-${TOTAL_NUMBER_OF_USERS}  12
+${TOTAL_NUMBER_OF_USERS}  12    # total number of users in the Database
 *** Keywords ***
 Get All Users Test
-    [Tags]    API
+    [Tags]    GET
     [Documentation]
     ...    Calls the API to return the response status code and total number of users.
     ...    Expected result is the API returns a code 200 success and 12 total users.
@@ -19,7 +19,7 @@ Get All Users Test
     should be equal as integers  ${users_total}  ${TOTAL_NUMBER_OF_USERS}
 
 Get A Specific User Test
-    [Tags]    lpn
+    [Tags]    GET
     [Documentation]
     ...    Calls the API to return the response status code and reponse user id.
     ...    Expected result is the API returns 200 status code success and the user id from the response.
@@ -29,7 +29,7 @@ Get A Specific User Test
     should be equal as integers  ${id}  ${sent_id}
 
 single user not found Test
-    [Tags]    lpn
+    [Tags]    GET
     [Documentation]
     ...    Calls the API to return the response status code.
     ...    Expected result is the API returns 404 status code not found.
@@ -38,11 +38,11 @@ single user not found Test
     should be equal as integers  ${recived_response}  ${STATUS_CODE_NOT_FOUND}
 
 Create a New User and Verify it was created
-    [Tags]    lpn
+    [Tags]    POST
     [Documentation]
-    ...    Calls the API to return the response status code CREATED name amd job from the response body.
-    ...    Expected result is the API returns 201 status code created and name, job of the sent request
-    ...    is the same from the response data.
+    ...    Calls the API to return the response status code (CREATED) name and job from the response body.
+    ...    Expected result is the API returns 201 status code (CREATED) . name, job of the sent request should
+    ...    be the same from the response data.
     ${created_name}  set variable  ahmad
     ${created_job}  set variable  Actor
     ${new_user_name}  ${new_user_job}  ${response_status}  create user  ${created_name}  ${created_job}
@@ -51,11 +51,11 @@ Create a New User and Verify it was created
     should be equal as strings  ${created_job}   ${new_user_job}
 
 Update User and Verify it has been updated
-    [Tags]    lpn
+    [Tags]    PUT
     [Documentation]
-    ...    Calls the API to return the response status code, created name amd job from the response body.
-    ...    Expected result is the API returns 201 status code created and name, job of the sent request
-    ...    is the same from the response data.
+    ...    Calls the API to return the response status code, updates name and job from the response body.
+    ...    Expected result is the API returns 200 status code OK. name, job of the sent request should be
+    ...    the same from the response data.
     ${user_ID}  Evaluate  random.randint(1, 12)  modules=random
     ${new_name}  set variable  ahmad
     ${new_job}  set variable  Actor
@@ -66,23 +66,19 @@ Update User and Verify it has been updated
 
 
 Delete User and Verify it Has been Deleted
-    [Tags]    lpn
+    [Tags]    POST
     [Documentation]
-    ...    Calls the API to return the siblings of the LPN passed in. Expected result
-    ...    is the API returns the six LPNs before and the six LPNs after the one that was passed up.
-    ...    It returns the case tied to each LPN, the po tied to the case, and the current location
-    ...    of the LPN. NOTE - These wouldnt necessarily be populated.
+    ...    Calls the API to return the response status code NO CONTENT.
+    ...    Expected result is the API returns 204 status code NO CONTENT.
      ${User_ID}=  Evaluate  random.randint(1, 12)  modules=random
      ${received_response}  delete user  ${User_ID}
      should be equal as integers  ${received_response}  ${STATUS_CODE_NO_CONTENT}
 
 Successfull Registration Test
-    [Tags]    lpn
+    [Tags]    POST
     [Documentation]
-    ...    Calls the API to return the siblings of the LPN passed in. Expected result
-    ...    is the API returns the six LPNs before and the six LPNs after the one that was passed up.
-    ...    It returns the case tied to each LPN, the po tied to the case, and the current location
-    ...    of the LPN. NOTE - These wouldnt necessarily be populated.
+    ...    Calls the API to return the response status code (OK) , created id and token.
+    ...    Expected result is the API returns 200 status code (OK) , an id and token for successfull registration.
     ${user_email}  set variable  eve.holt@reqres.in
     ${password}  set variable  qwerty
     ${created_id}   ${created_token}   ${verify_successful_registration}  successful registration  ${user_email}  ${password}
@@ -91,24 +87,20 @@ Successfull Registration Test
     should be equal as integers  ${verify_successful_registration}  ${STATUS_CODE_OK}
 
 UnSuccessfull Registration Test
-    [Tags]    lpn
+    [Tags]    POST
     [Documentation]
-    ...    Calls the API to return the siblings of the LPN passed in. Expected result
-    ...    is the API returns the six LPNs before and the six LPNs after the one that was passed up.
-    ...    It returns the case tied to each LPN, the po tied to the case, and the current location
-    ...    of the LPN. NOTE - These wouldnt necessarily be populated.
+    ...    Calls the API to return the response status code (BAD REQUEST).
+    ...    Expected result is the API returns 400 status code (BAD REQUEST).
     ${user_email}  set variable  ahmad@reqers.in
     ${password}  set variable  qwerty
     ${verify_unSuccessful_registration}  unsuccessful registration  ${user_email}  ${password}
     should be equal as integers  ${verify_unSuccessful_registration}  ${STATUS_CODE_BAD_REQUEST}
 
 Successfull Login Test
-    [Tags]    lpn
+    [Tags]    POST
     [Documentation]
-    ...    Calls the API to return the siblings of the LPN passed in. Expected result
-    ...    is the API returns the six LPNs before and the six LPNs after the one that was passed up.
-    ...    It returns the case tied to each LPN, the po tied to the case, and the current location
-    ...    of the LPN. NOTE - These wouldnt necessarily be populated.
+    ...    Calls the API to return the response status code (OK) and token.
+    ...    Expected result is the API returns 200 status code (OK) and token for successfull login.
     ${user_email}  set variable  eve.holt@reqres.in
     ${password}  set variable  qwerty
     ${response_token}   ${verify_Successful_Login}  successful login  ${user_Email}  ${password}
@@ -116,24 +108,20 @@ Successfull Login Test
     should be equal as integers  ${verify_successful_login}  ${STATUS_CODE_OK}
 
 UnSuccessfull login Test
-    [Tags]    lpn
+    [Tags]    POST
     [Documentation]
-    ...    Calls the API to return the siblings of the LPN passed in. Expected result
-    ...    is the API returns the six LPNs before and the six LPNs after the one that was passed up.
-    ...    It returns the case tied to each LPN, the po tied to the case, and the current location
-    ...    of the LPN. NOTE - These wouldnt necessarily be populated.
+    ...    Calls the API to return the response status code (BAD REQUEST).
+    ...    Expected result is the API returns 400 status code (BAD REQUEST).
     ${user_Email}  set variable  ahmad@reqers.in
     ${password}  set variable  qwerty
     ${verify_unSuccessful_Login}  unsuccessful login  ${user_Email}  ${password}
     should be equal as integers  ${verify_unSuccessful_login}  ${STATUS_CODE_BAD_REQUEST}
 
 delayed response test
-    [Tags]    lpn
+    [Tags]    GET
     [Documentation]
-    ...    Calls the API to return the siblings of the LPN passed in. Expected result
-    ...    is the API returns the six LPNs before and the six LPNs after the one that was passed up.
-    ...    It returns the case tied to each LPN, the po tied to the case, and the current location
-    ...    of the LPN. NOTE - These wouldnt necessarily be populated.
+    ...    Calls the API to return the response status code (OK) and total number of users.
+    ...    Expected result is the API returns a code 200 success (OK) and 12 total users.
     ${recived_response}  ${users_total}  delayed response
     should be equal as integers  ${recived_response}  ${STATUS_CODE_OK}
     should be equal as integers  ${users_total}  ${TOTAL_NUMBER_OF_USERS}
