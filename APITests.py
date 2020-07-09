@@ -7,7 +7,7 @@ HEADERS = {
 }
 
 
-def get_all_users():
+def get_users_in_page(page_number):
     """
           Documentation: This function uses the provided url to send an API request
           using python's requests library (GET method). It should return the json data that contains
@@ -16,14 +16,14 @@ def get_all_users():
 
           returns:
             response_status_code: The response status of the request
-            number_of_users: total number of users in the database
+            number_of_users_per_page: total number of users in a page
     """
-    relative_url = "api/users"
+    relative_url = "api/users?page=" + str(page_number)
     url = BASE_URL + relative_url
     response = requests.request("GET", url, headers=HEADERS)  # Stores the response
-    number_of_users = response.json()['total']  # returns total number of users in the database
+    number_of_users_per_page = len(response.json()['data'])  # returns total number of users in a page
     response_status_code = response.status_code
-    return response_status_code, number_of_users
+    return response_status_code, number_of_users_per_page
 
 
 def get_single_user(user_id):
@@ -237,6 +237,6 @@ def delayed_response():
     """
     url = BASE_URL + "api/users?delay=3"
     response = requests.get(url, headers=HEADERS)
-    number_of_users = response.json()['total']
+    number_of_users_per_page = len(response.json()['data'])  # returns total number of users in a page
     response_status_code = response.status_code
-    return response_status_code, number_of_users
+    return response_status_code, number_of_users_per_page

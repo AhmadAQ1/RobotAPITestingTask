@@ -4,7 +4,7 @@ Resource  Keywords.robot
 *** Test Cases ***
 
 Get Data Tests
-    Get All Users Test
+    Get All Users In A Page
     Get A Specific User Test
     Single User Not Found Test
     Delayed Response Test

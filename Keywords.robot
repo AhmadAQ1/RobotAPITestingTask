@@ -7,16 +7,17 @@ ${STATUS_CODE_CREATED}  201
 ${STATUS_CODE_NO_CONTENT}  204
 ${STATUS_CODE_BAD_REQUEST}  400
 ${STATUS_CODE_NOT_FOUND}  404
-${TOTAL_NUMBER_OF_USERS}  12    # total number of users in the Database
+${TOTAL_NUMBER_OF_USERS}  6    # total number of users in a page
 *** Keywords ***
-Get All Users Test
+Get All Users In A Page
     [Tags]    GET
     [Documentation]
     ...    Calls the API to return the response status code and total number of users.
-    ...    Expected result is the API returns a code 200 success and 12 total users.
-    ${response_code}  ${users_total}  get all users
+    ...    Expected result is the API returns a code 200 success and 6 total users.
+    ${page_number}  Evaluate  random.randint(1, 2)  modules=random
+    ${response_code}  ${total_users_in_page}  get users in page  ${page_number}
     should be equal as integers  ${response_code}  ${STATUS_CODE_OK}
-    should be equal as integers  ${users_total}  ${TOTAL_NUMBER_OF_USERS}
+    should be equal as integers  ${total_users_in_page}  ${TOTAL_NUMBER_OF_USERS}
 
 Get A Specific User Test
     [Tags]    GET
