@@ -1,7 +1,7 @@
 import requests
 
 BASE_URL = "https://reqres.in/"  # This is the base URL used for all requests
-HEADERS = {
+HEADERS = {  # Used to inform what type of data is expected
     'accept': 'application/json',
     'Content-Type': 'application/json',
 }
@@ -14,15 +14,18 @@ def get_users_in_page(page_number):
           the specific data you are hoping to find. This function only returns the data with
           the given path you provide (in tuple format).
 
+          parameters:
+          page_number: The page number to get users from
+
           returns:
             response_status_code: The response status of the request
             number_of_users_per_page: total number of users in a page
     """
-    relative_url = "api/users?page=" + str(page_number)
+    relative_url = "api/users?page=" + str(page_number)  # Concatenates the desired page to the url
     url = BASE_URL + relative_url
     response = requests.request("GET", url, headers=HEADERS)  # Stores the response
     number_of_users_per_page = len(response.json()['data'])  # returns total number of users in a page
-    response_status_code = response.status_code
+    response_status_code = response.status_code  # Stores the response status code
     return response_status_code, number_of_users_per_page
 
 
@@ -53,7 +56,7 @@ def single_user_not_found(user_id):
           Documentation: This function uses the provided user_id to send an API request
           using python's requests library (GET method). It should return the json data
           that contains the specific data you are hoping to find. This function only returns
-          the data with the given path you provide (in tuple format).
+          the data with the given path you provide.
 
           parameters:
             user_id: The id of the user to use as an endpoint.
@@ -70,9 +73,9 @@ def single_user_not_found(user_id):
 
 def create_user(user_name, user_job):
     """
-          Documentation: This function uses the provided user_name and user_job post a request
+          Documentation: This function uses the provided user_name and user_job to post a request
           using python's requests library (POST request). It Creates a new user with the given
-          parameters.This function only returns the data in tuple format.
+          parameters.This function only returns the data with the given path you provide in (tuple format).
 
           parameters:
             user_name:  The new user name to create for a user
@@ -95,9 +98,10 @@ def create_user(user_name, user_job):
 
 def update_user(ID, user_name, user_job):
     """
-          Documentation: This function uses the provided user ID to update the specific user
-          using python's requests library (PUT method). It updates the specific user with the given parameters.
-          This function returns the response data (name, job) from the request in tuple format.
+          Documentation: This function uses the provided user ID to update a specific user
+          using python's requests library (PUT method). The user's credentials are updated with
+          the given parameters (user_name, user_job). This function returns the response data
+          (name, job) from the request in tuple format.
 
           parameters:
             ID:  The specific user id to updates his data
@@ -123,7 +127,7 @@ def delete_user(Id):
     """
           Documentation: This function uses the provided user ID to delete a specific user
           using python's requests library (DELETE method). This function returns the response
-          status data.
+          status code.
 
           parameters:
             ID:  The specific user id to delete.
@@ -140,7 +144,7 @@ def delete_user(Id):
 def successful_registration(user_email, user_password):
     """
           Documentation: This function uses the provided user user_email and user_password to register
-          using python's requests library (POST method). It sends email, password details.This function
+          using python's requests library (POST method). It sends email, password credentials.This function
           returns the response data (registration id,registration token, response status code) from the
           request in tuple format.
 
@@ -164,8 +168,8 @@ def successful_registration(user_email, user_password):
 
 def unsuccessful_registration(user_email, user_password):
     """
-          Documentation: This function uses the provided user user_email and user_password to register
-          using python's requests library (POST method). It sends email, password details.This function
+          Documentation: This function uses the provided user_email and user_password to register
+          using python's requests library (POST method). It sends email, password credentials.This function
           returns the response data (response status code) from the request.
 
           parameters:
@@ -185,7 +189,7 @@ def unsuccessful_registration(user_email, user_password):
 def successful_login(user_email, user_password):
     """
           Documentation: This function uses the provided user user_email and user_password to login
-          using python's requests library (POST method). It sends email, password details.This function
+          using python's requests library (POST method). It sends email, password credentials.This function
           returns the response data (login token, response status code) from the request in tuple format.
 
           parameters:
@@ -208,7 +212,8 @@ def unsuccessful_login(Email, Passsword):
     """
           Documentation: This function uses the provided user user_email and user_password to login
           using python's requests library (POST method). It sends email, password details.This function
-          returns the response data (response status code) from the reques.
+          returns the response data (response status code) from the request.This function only returns
+          the data with the given path you provide.
 
           parameters:
             user_email: The user email for login
@@ -226,14 +231,14 @@ def unsuccessful_login(Email, Passsword):
 
 def delayed_response():
     """
-          Documentation: This function uses the url to send an API request
+          Documentation: This function uses a url to send an API request
           using python's requests library (GET request). It should return the json data
           that contains the specific data you are hoping to find. This
           function only returns the data with the given path you provide (in tuple format).
 
           returns:
             response_status_code: The response status of the request
-            number_of_users: total number of users in the database
+            number_of_users_per_page: total number of users in a page
     """
     url = BASE_URL + "api/users?delay=3"
     response = requests.get(url, headers=HEADERS)

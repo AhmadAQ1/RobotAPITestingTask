@@ -24,7 +24,7 @@ Get A Specific User Test
     [Documentation]
     ...    Calls the API to return the response status code and reponse user id.
     ...    Expected result is the API returns 200 status code success and the user id from the response.
-    ${id}=  Evaluate  random.randint(1, 12)  modules=random
+    ${id}  Evaluate  random.randint(1, 12)  modules=random     #generates a random ID between 1 - 12
     ${recived_response}  ${sent_id}   get single user  ${id}
     should be equal as integers  ${recived_response}  ${STATUS_CODE_OK}
     should be equal as integers  ${id}  ${sent_id}
@@ -34,7 +34,7 @@ Single User Not Found Test
     [Documentation]
     ...    Calls the API to return the response status code.
     ...    Expected result is the API returns 404 status code not found.
-    ${id}=  Evaluate  random.randint(13, 100)  modules=random
+    ${id}  Evaluate  random.randint(13, 100)  modules=random   #generates a random ID between 13 - 100
     ${recived_response}  single user not found  ${id}
     should be equal as integers  ${recived_response}  ${STATUS_CODE_NOT_FOUND}
 
@@ -57,7 +57,7 @@ Update User And Verify It Has Been Updated
     ...    Calls the API to return the response status code, updates name and job from the response body.
     ...    Expected result is the API returns 200 status code OK. name, job of the sent request should be
     ...    the same from the response data.
-    ${user_ID}  Evaluate  random.randint(1, 12)  modules=random
+    ${user_ID}  Evaluate  random.randint(1, 12)  modules=random     #generates a random ID between 1 - 12
     ${new_name}  set variable  ahmad
     ${new_job}  set variable  Actor
     ${updated_user_name}  ${updated_user_job}   ${received_status}   update user  ${user_ID}  ${new_name}  ${new_job}
@@ -121,8 +121,8 @@ UnSuccessfull login Test
 Delayed Response Test
     [Tags]    GET
     [Documentation]
-    ...    Calls the API to return the response status code (OK) and total number of users.
-    ...    Expected result is the API returns a code 200 success (OK) and 12 total users.
+    ...    Calls the API to return the response status code (OK) and total number of users in a page.
+    ...    Expected result is the API returns a code 200 success (OK) and 6 total users.
     ${recived_response}  ${users_total}  delayed response
     should be equal as integers  ${recived_response}  ${STATUS_CODE_OK}
     should be equal as integers  ${users_total}  ${TOTAL_NUMBER_OF_USERS}
