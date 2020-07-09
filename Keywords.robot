@@ -54,7 +54,7 @@ Create A New User And Verify It Was Created
 Update User And Verify It Has Been Updated
     [Tags]    PUT
     [Documentation]
-    ...    Calls the API to return the response status code, updates name and job from the response body.
+    ...    Calls the API to return the response status code, updated name and job from the response body.
     ...    Expected result is the API returns 200 status code OK. name, job of the sent request should be
     ...    the same from the response data.
     ${user_ID}  Evaluate  random.randint(1, 12)  modules=random     #generates a random ID between 1 - 12
